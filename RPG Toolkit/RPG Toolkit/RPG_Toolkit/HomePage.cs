@@ -101,7 +101,7 @@ namespace RPG_Toolkit
             {
                 Children =
                 {
-                    first, second, //third
+                    first, second
                 }
             };
 
@@ -112,14 +112,7 @@ namespace RPG_Toolkit
                 BackgroundColor = Color.LightGray
             };         
 
-            StackLayout finalstack = new StackLayout
-            {
-                Children =
-                {
-                    topframe, scrollcontainer
-
-                }
-            };
+            
 
 //---------------------------------------------------------------------------------
 //------------------------------Event handlers--------------------------------------
@@ -173,25 +166,24 @@ namespace RPG_Toolkit
                 }
                 if ((typePicker.SelectedIndex == -1) || (typePicker.SelectedIndex == 0)) //adding the simple label for the default picker value and label option
                 {
-                    scrollstack.Children.Add(new Frame
+                    scrollstack.Children.Add(new Frame 
                     {
                         Content = childLabel,
                         BackgroundColor = a,
                         OutlineColor = Color.Silver
                     });
                 }                               
-                if (typePicker.SelectedIndex == 1)
+                if (typePicker.SelectedIndex == 1) //what to do when the second (index 1) option of the picker is chosen
                 {
                     StackLayout stepperLayout = new StackLayout()
-                    {
-                        //Orientation = StackOrientation.Horizontal,
+                    {                        
                         Children =
                         {
                             stepperLabel, childStepper
                         }
                     };
 
-                    scrollstack.Children.Add(new Frame
+                    scrollstack.Children.Add(new Frame //adding the actual frame with the label and stepper, in this case
                     {
                         Content = stepperLayout,
                         BackgroundColor = a,
@@ -200,12 +192,12 @@ namespace RPG_Toolkit
                 }
             }
 
-            bRemove.Clicked += RemoveClicked;
+            bRemove.Clicked += RemoveClicked; //button to remove the downmost element in the scrolling stack
             void RemoveClicked(object sender, EventArgs args)
             {
-                if (scrollstack.Children.Count > 0)
+                if (scrollstack.Children.Count > 0) //check to see if there are any elements in the scrolling stack
                 {
-                    scrollstack.Children.RemoveAt(scrollstack.Children.Count - 1);
+                    scrollstack.Children.RemoveAt(scrollstack.Children.Count - 1); //removing the last (lowest) element of the scrollingstack
                 }
             }
 
@@ -214,7 +206,14 @@ namespace RPG_Toolkit
 //---------------------------------------------------------------------------------
 //------------------------------Populating the final stack--------------------------
 //-----------------------------------------------------------------------------------
-            Content = finalstack;   
+            Content = new StackLayout()         
+            {
+                Children =
+                {
+                    topframe, scrollcontainer
+
+                }
+            };
         }        
     }
 }
