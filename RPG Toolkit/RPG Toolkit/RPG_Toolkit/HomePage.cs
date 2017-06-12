@@ -11,10 +11,10 @@ namespace RPG_Toolkit
 
             
         StackLayout scrollstack = new StackLayout(); //scrollstack template
-        Color a = Color.White; //default color
+        Color currentColor = Color.White; //default color
         int diceValue = 0; //default dice roll value
         Random rnd = new Random(); //random number initiator
-       // Dictionary<int, Color> colorList = new Dictionary<int, Color>(); //dictionary to hold child number and frame-color pairings NOT FINISHED !!!!!
+        
 //--------------------------------------------------------------------------------
 //------------------------------Visual elements------------------------------------
 //-----------------------------------------------------------------------------------        
@@ -122,12 +122,12 @@ namespace RPG_Toolkit
             {
                 if (colorPicker.SelectedIndex == -1) //default value
                 {
-                    a = Color.White; 
+                    currentColor = Color.White; 
                 }
                 else
                 {
                     string colorName = colorPicker.Items[colorPicker.SelectedIndex]; //setting the value using the dictionary
-                    a = nameToColor[colorName];
+                    currentColor = nameToColor[colorName];
                 }
             };
 
@@ -140,7 +140,7 @@ namespace RPG_Toolkit
                 Label childLabel = new Label //simple label also used as default
                 {
                     Text = savedName,
-                    FontSize = 26,
+                    FontSize = 22,
                     HorizontalOptions = LayoutOptions.StartAndExpand
 
                 };
@@ -163,7 +163,7 @@ namespace RPG_Toolkit
                 Label stepperLabel = new Label //label to be used with its corresponding stepper
                 {
                     Text = String.Format("{0}: {1}", savedName, childStepper.Value), //setting the value of the label to the correct format and current stepper value
-                    FontSize = 26,
+                    FontSize = 22,
                     HorizontalOptions = LayoutOptions.StartAndExpand
                 };
 
@@ -180,7 +180,7 @@ namespace RPG_Toolkit
                     scrollstack.Children.Add(new Frame 
                     {
                         Content = childLabel,
-                        BackgroundColor = a,
+                        BackgroundColor = currentColor,
                         OutlineColor = Color.Silver
                     });
                 }                               
@@ -197,14 +197,14 @@ namespace RPG_Toolkit
                     scrollstack.Children.Add(new Frame //adding the actual frame with the label and stepper, in this case
                     {
                         Content = stepperLayout,
-                        BackgroundColor = a,
+                        BackgroundColor = currentColor,
                         OutlineColor = Color.Silver
                     });
                 }
                 Label diceLabel = new Label
                 {
-                    Text = String.Format("{0}: {1}", savedName, diceValue), //setting the value of the label to the correct format and current stepper value
-                    FontSize = 26,
+                    Text = String.Format("{0}: Roll the dice !", savedName), //setting the value of the label to the correct format and current stepper value                
+                    FontSize = 22,
                     HorizontalOptions = LayoutOptions.StartAndExpand
                 };
 
@@ -220,7 +220,7 @@ namespace RPG_Toolkit
                     Frame diceFrame = new Frame() //frame containing the dice control stacklayout
                     {
                         Content = diceLayout,
-                        BackgroundColor = a,
+                        BackgroundColor = currentColor,
                         OutlineColor = Color.Silver
                     };
                     scrollstack.Children.Add(diceFrame); // adding the actual frame with the dice label and roll button                   
@@ -229,12 +229,13 @@ namespace RPG_Toolkit
                     {
 
                         int rolled = rnd.Next(1, 7); //generating a random value in the 1-6 interval (min, max+1)
-                        diceLabel.Text = String.Format("{0}: {1}", savedName, rolled);
+                        diceLabel.Text = String.Format("{0}: {1}", savedName, rolled); //formatting the label text
+                        Color previousColor = diceFrame.BackgroundColor;
                         diceFrame.BackgroundColor = Color.Gray;
 
                         Device.StartTimer(TimeSpan.FromMilliseconds(1500), () =>
                          {
-                             diceFrame.BackgroundColor = a;
+                             diceFrame.BackgroundColor = previousColor;
                              return false;
                          });
                     }
