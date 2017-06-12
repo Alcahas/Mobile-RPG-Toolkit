@@ -46,3 +46,6 @@ C:\Users\D\Source\Repos\Mobile-RPG-Toolkit\RPG Toolkit\RPG Toolkit\RPG_Toolkit.A
 C:\Users\D\Source\Repos\Mobile-RPG-Toolkit\RPG Toolkit\RPG Toolkit\RPG_Toolkit.Android\obj\Debug\android\assets\Mono.Security.dll
 C:\Users\D\Source\Repos\Mobile-RPG-Toolkit\RPG Toolkit\RPG Toolkit\RPG_Toolkit.Android\obj\Debug\android\assets\System.Resources.ResourceManager.dll
 C:\Users\D\Source\Repos\Mobile-RPG-Toolkit\RPG Toolkit\RPG Toolkit\RPG_Toolkit.Android\obj\Debug\android\assets\System.Diagnostics.Tools.dll
+C:\Users\D\Source\Repos\Mobile-RPG-Toolkit\RPG Toolkit\RPG Toolkit\RPG_Toolkit.Android\obj\Debug\android\assets\SQLite-net.dll
+C:\Users\D\Source\Repos\Mobile-RPG-Toolkit\RPG Toolkit\RPG Toolkit\RPG_Toolkit.Android\obj\Debug\android\assets\SQLitePCLRaw.core.dll
+C:\Users\D\Source\Repos\Mobile-RPG-Toolkit\RPG Toolkit\RPG Toolkit\RPG_Toolkit.Android\obj\Debug\android\assets\SQLitePCLRaw.batteries_v2.dll

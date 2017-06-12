@@ -48,3 +48,7 @@ C:\Users\D\Source\Repos\Mobile-RPG-Toolkit\RPG Toolkit\RPG Toolkit\RPG_Toolkit.A
 C:\Users\D\Source\Repos\Mobile-RPG-Toolkit\RPG Toolkit\RPG Toolkit\RPG_Toolkit.Android\obj\Debug\android\assets\Xamarin.Forms.Core.dll.mdb
 C:\Users\D\Source\Repos\Mobile-RPG-Toolkit\RPG Toolkit\RPG Toolkit\RPG_Toolkit.Android\obj\Debug\android\assets\Xamarin.Forms.Platform.Android.dll.mdb
 C:\Users\D\Source\Repos\Mobile-RPG-Toolkit\RPG Toolkit\RPG Toolkit\RPG_Toolkit.Android\obj\Debug\android\assets\Xamarin.Forms.Xaml.dll.mdb
+C:\Users\D\Source\Repos\Mobile-RPG-Toolkit\RPG Toolkit\RPG Toolkit\RPG_Toolkit.Android\bin\Debug\SQLite-net.dll
+C:\Users\D\Source\Repos\Mobile-RPG-Toolkit\RPG Toolkit\RPG Toolkit\RPG_Toolkit.Android\bin\Debug\SQLitePCLRaw.core.dll
+C:\Users\D\Source\Repos\Mobile-RPG-Toolkit\RPG Toolkit\RPG Toolkit\RPG_Toolkit.Android\bin\Debug\SQLitePCLRaw.batteries_v2.dll
+C:\Users\D\Source\Repos\Mobile-RPG-Toolkit\RPG Toolkit\RPG Toolkit\RPG_Toolkit.Android\bin\Debug\SQLite-net.xml

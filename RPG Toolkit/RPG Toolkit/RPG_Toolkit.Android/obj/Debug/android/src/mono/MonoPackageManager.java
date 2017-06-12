@@ -113,6 +113,9 @@ class MonoPackageManager_Resources {
 		"Xamarin.Forms.Platform.dll",
 		"Xamarin.Forms.Xaml.dll",
 		"RPG_Toolkit.dll",
+		"SQLite-net.dll",
+		"SQLitePCLRaw.core.dll",
+		"SQLitePCLRaw.batteries_v2.dll",
 	};
 	public static final String[] Dependencies = new String[]{
 	};

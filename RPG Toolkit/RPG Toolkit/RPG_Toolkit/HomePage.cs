@@ -1,9 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Reflection.Emit;
-using System.Text;
-
 using Xamarin.Forms;
 
 namespace RPG_Toolkit
@@ -12,8 +8,13 @@ namespace RPG_Toolkit
     {
         public HomePage()
         {
-            StackLayout scrollstack = new StackLayout(); //scrollstack template
-            Color a = Color.White; //default color
+
+            
+        StackLayout scrollstack = new StackLayout(); //scrollstack template
+        Color a = Color.White; //default color
+        int diceValue = 0; //default dice roll value
+        Random rnd = new Random(); //random number initiator
+       // Dictionary<int, Color> colorList = new Dictionary<int, Color>(); //dictionary to hold child number and frame-color pairings NOT FINISHED !!!!!
 //--------------------------------------------------------------------------------
 //------------------------------Visual elements------------------------------------
 //-----------------------------------------------------------------------------------        
@@ -58,7 +59,7 @@ namespace RPG_Toolkit
                 colorPicker.Items.Add(colorName);
             }
 
-            string[] types = {"Label", "Stepper"}; //array to hold the type values in the picker
+            string[] types = {"Label", "Stepper", "Dice Roll"}; //array to hold the type values in the picker
             foreach (string type in types)  //adding the items in the array to the picker
             {
                 typePicker.Items.Add(type);
@@ -135,6 +136,7 @@ namespace RPG_Toolkit
             void AddClicked(object sender, EventArgs args)
             {
                 string savedName = nameEntry.Text; // saving the data in the Entry box
+                
                 Label childLabel = new Label //simple label also used as default
                 {
                     Text = savedName,
@@ -146,10 +148,16 @@ namespace RPG_Toolkit
                 Stepper childStepper = new Stepper //the stepper constructor, object is made by pressing the Add button after choosing Stepper from the picker
                 {
                     Value = 0,
-                    Minimum = 0,
-                    Maximum = 50,
+                    Minimum = -25,
+                    Maximum = 25,
                     Increment = 1,
                     HorizontalOptions = LayoutOptions.EndAndExpand
+                };
+
+                Button bRoll = new Button // the button constructor for the dice rolling button
+                {
+                    HorizontalOptions = LayoutOptions.EndAndExpand,
+                    Text = "Roll"
                 };
 
                 Label stepperLabel = new Label //label to be used with its corresponding stepper
@@ -164,6 +172,9 @@ namespace RPG_Toolkit
                 {
                     stepperLabel.Text = String.Format("{0}: {1}", savedName,childStepper.Value);
                 }
+
+               
+
                 if ((typePicker.SelectedIndex == -1) || (typePicker.SelectedIndex == 0)) //adding the simple label for the default picker value and label option
                 {
                     scrollstack.Children.Add(new Frame 
@@ -190,6 +201,45 @@ namespace RPG_Toolkit
                         OutlineColor = Color.Silver
                     });
                 }
+                Label diceLabel = new Label
+                {
+                    Text = String.Format("{0}: {1}", savedName, diceValue), //setting the value of the label to the correct format and current stepper value
+                    FontSize = 26,
+                    HorizontalOptions = LayoutOptions.StartAndExpand
+                };
+
+                if (typePicker.SelectedIndex == 2) //what to do when the third (index 2) option of the picker is chosen
+                {
+                    StackLayout diceLayout = new StackLayout() //stacklayout containing the two elements of the dice section, to be put in its specific frame
+                    {
+                        Children =
+                        {
+                            diceLabel, bRoll
+                        }
+                    };
+                    Frame diceFrame = new Frame() //frame containing the dice control stacklayout
+                    {
+                        Content = diceLayout,
+                        BackgroundColor = a,
+                        OutlineColor = Color.Silver
+                    };
+                    scrollstack.Children.Add(diceFrame); // adding the actual frame with the dice label and roll button                   
+                    bRoll.Clicked += bRollClicked;
+                    void bRollClicked(object Sender, EventArgs e) //method to be called when the bRoll button is clicked
+                    {
+
+                        int rolled = rnd.Next(1, 7); //generating a random value in the 1-6 interval (min, max+1)
+                        diceLabel.Text = String.Format("{0}: {1}", savedName, rolled);
+                        diceFrame.BackgroundColor = Color.Gray;
+
+                        Device.StartTimer(TimeSpan.FromMilliseconds(1500), () =>
+                         {
+                             diceFrame.BackgroundColor = a;
+                             return false;
+                         });
+                    }
+
+                }
             }
 
             bRemove.Clicked += RemoveClicked; //button to remove the downmost element in the scrolling stack
@@ -201,16 +251,19 @@ namespace RPG_Toolkit
                 }
             }
 
-            
-            
-//---------------------------------------------------------------------------------
-//------------------------------Populating the final stack--------------------------
-//-----------------------------------------------------------------------------------
+           
+
+
+
+
+            //---------------------------------------------------------------------------------
+            //------------------------------Populating the final stack--------------------------
+            //-----------------------------------------------------------------------------------
             Content = new StackLayout()         
             {
                 Children =
                 {
-                    topframe, scrollcontainer
+                    topframe, scrollcontainer //topframe containing the add/remove controls and scrolling list, at the bottom
 
                 }
             };
