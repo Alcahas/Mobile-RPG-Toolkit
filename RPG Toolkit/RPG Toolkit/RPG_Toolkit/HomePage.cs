@@ -6,6 +6,8 @@ namespace RPG_Toolkit
 {
     public class HomePage : ContentPage
     {
+        
+
         public HomePage()
         {
 
@@ -14,6 +16,8 @@ namespace RPG_Toolkit
         Color currentColor = Color.White; //default color
         int diceValue = 0; //default dice roll value
         Random rnd = new Random(); //random number initiator
+        
+      
         
 //--------------------------------------------------------------------------------
 //------------------------------Visual elements------------------------------------
@@ -223,21 +227,25 @@ namespace RPG_Toolkit
                         BackgroundColor = currentColor,
                         OutlineColor = Color.Silver
                     };
-                    scrollstack.Children.Add(diceFrame); // adding the actual frame with the dice label and roll button                   
+                    scrollstack.Children.Add(diceFrame); // adding the actual frame with the dice label and roll button     
+                    
                     bRoll.Clicked += bRollClicked;
                     void bRollClicked(object Sender, EventArgs e) //method to be called when the bRoll button is clicked
-                    {
+                    {                        
+                        if (diceFrame.BackgroundColor != Color.Gray) //make the Roll button work only while it's not in the cooldown period
+                        {
+                            int rolled = rnd.Next(1, 7); //generating a random value in the 1-6 interval (min, max+1)
+                            diceLabel.Text = String.Format("{0}: {1}", savedName, rolled); //formatting the label text    
 
-                        int rolled = rnd.Next(1, 7); //generating a random value in the 1-6 interval (min, max+1)
-                        diceLabel.Text = String.Format("{0}: {1}", savedName, rolled); //formatting the label text
-                        Color previousColor = diceFrame.BackgroundColor;
-                        diceFrame.BackgroundColor = Color.Gray;
-
-                        Device.StartTimer(TimeSpan.FromMilliseconds(1500), () =>
-                         {
-                             diceFrame.BackgroundColor = previousColor;
-                             return false;
-                         });
+                            Color previousColor = diceFrame.BackgroundColor; //saves the current frame color to be used afterwards
+                            diceFrame.BackgroundColor = Color.Gray;
+                                Device.StartTimer(TimeSpan.FromMilliseconds(1500), () => //start timer that retrieves frame color to previous value
+                                {
+                                    diceFrame.BackgroundColor = previousColor;
+                                    return false;
+                                });
+                        }                       
+                        
                     }
 
                 }
