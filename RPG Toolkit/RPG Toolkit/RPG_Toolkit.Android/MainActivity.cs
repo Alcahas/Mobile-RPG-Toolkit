@@ -18,7 +18,7 @@ namespace RPG_Toolkit.Droid
             ToolbarResource = Resource.Layout.Toolbar;
 
             base.OnCreate(bundle);
-
+		//test for commit
             global::Xamarin.Forms.Forms.Init(this, bundle);
             LoadApplication(new App());
         }
